@@ -1,0 +1,14 @@
+{
+  "name": "node-telegram-bot-api-queue",
+  "version": "0.0.1",
+  "description": "Simple telegram bot queue for node-telegram-bot-api TelegramBot",
+  "main": "lib.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rrov",
+  "license": "MIT",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
