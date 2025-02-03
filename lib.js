@@ -10,10 +10,7 @@ export class TelegramBotQueue {
         var element = new Element(method, parameters, this.bot, this, chatId);
 
         this.elements.push(element);
-    
-        if (this.elements.length <= this.limit && element.canSend()) {
-            element.send();
-        }
+        this.elements.find(element => element.canSend())?.send();
 
         return element.getMessage();
     }
@@ -49,14 +46,15 @@ class Element {
             .finally(() => setTimeout(() => this.queue.remove(this), 1000));
     }
 
-    async getMessage() {
-        return await this.message;
+    getMessage() {
+        return this.message;
     }
     
     canSend() {
         var isSending = element => typeof element.chatId != 'undefined' && element.chatId == this.chatId && element.sending;
-        var element = this.queue.elements.some(isSending);
-        return !this.sending && !element;
+        var sameElementSending = this.queue.elements.some(isSending);
+        var sendingCount = this.queue.elements.reduce((a, b) => a + Number(b.sending), 0);
+        return !this.sending && !sameElementSending && sendingCount <= this.queue.limit;
     }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "node-telegram-bot-api-queue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple telegram bot queue for node-telegram-bot-api TelegramBot",
   "main": "lib.js",
   "scripts": {
